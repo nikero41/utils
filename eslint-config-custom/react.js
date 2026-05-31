@@ -1,10 +1,17 @@
+import pluginQuery from "@tanstack/eslint-plugin-query";
 import prettier from "eslint-config-prettier";
+import { importX } from "eslint-plugin-import-x";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
+import { defineConfig } from "eslint/config";
 import globals from "globals";
-import tseslint from "typescript-eslint";
 
-export default tseslint.config(
+export default defineConfig(
+	{
+		name: "Import React",
+		files: ["**/*.{ts,tsx,mts,cts}", "**/*.{js,jsx,mjs,cjs}"],
+		extends: [importX.flatConfigs.react],
+	},
 	{
 		name: "React",
 		files: ["**/*.{ts,tsx,mts,cts}", "**/*.{js,jsx,mjs,cjs}"],
@@ -34,6 +41,13 @@ export default tseslint.config(
 			"react/hook-use-state": ["warn", { allowDestructuredState: true }],
 			/* Make components with no children a self-closing tag */
 			"react/self-closing-comp": "warn",
+			/* Prevent fragments as component syntax */
+			"react/jsx-fragments": "error",
+			/* Handle curly braces in JSX */
+			"react/jsx-curly-brace-presence": [
+				"warn",
+				{ props: "never", children: "never", propElementValues: "always" },
+			],
 		},
 		languageOptions: {
 			parserOptions: {
@@ -51,8 +65,8 @@ export default tseslint.config(
 	{
 		name: "React hooks",
 		files: ["**/*.{ts,tsx,mts,cts}", "**/*.{js,jsx,mjs,cjs}"],
-		plugins: { "react-hooks": reactHooks },
-		rules: reactHooks.configs.recommended.rules,
+		extends: [reactHooks.configs.flat.recommended],
 	},
+	pluginQuery.configs["flat/recommended"],
 	{ name: "Prettier", ...prettier },
 );

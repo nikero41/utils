@@ -1,0 +1,15 @@
+{
+	"name": "typescript-config",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"exports": {
+		"./base": "./base.json",
+		"./nextjs": "./nextjs.json",
+		"./node": "./node.json",
+		"./lib": "./library.json"
+	},
+	"devDependencies": {
+		"@total-typescript/tsconfig": "^1.0.4"
+	}
+}

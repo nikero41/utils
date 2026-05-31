@@ -1,0 +1,36 @@
+{
+	"name": "eslint-config-nikero",
+	"version": "1.0.0",
+	"type": "module",
+	"private": true,
+	"exports": {
+		".": "./barrel.js",
+		"./base": "./base.js",
+		"./typescript": "./typescript.js",
+		"./node": "./node.js",
+		"./react": "./react.js",
+		"./frontend": "./frontend.js"
+	},
+	"devDependencies": {
+		"@eslint/compat": "^2.1.0",
+		"@eslint/js": "^9.39.4",
+		"@eslint/json": "^1.2.0",
+		"@tanstack/eslint-plugin-query": "^5.100.11",
+		"eslint": "^9.39.4",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-import-resolver-babel-module": "^5.3.2",
+		"eslint-import-resolver-typescript": "^4.4.4",
+		"eslint-plugin-better-tailwindcss": "^4.5.0",
+		"eslint-plugin-import-x": "^4.16.2",
+		"eslint-plugin-import-zod": "^1.2.1",
+		"eslint-plugin-jsx-a11y": "^6.10.2",
+		"eslint-plugin-node": "^11.1.0",
+		"eslint-plugin-react": "7.37.5",
+		"eslint-plugin-react-hooks": "^7.1.0",
+		"eslint-plugin-tailwindcss": "3.18.3",
+		"eslint-plugin-turbo": "^2.9.14",
+		"globals": "^17.6.0",
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.59.4"
+	}
+}

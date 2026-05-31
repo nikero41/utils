@@ -1,0 +1,11 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"display": "Node",
+	"extends": ["./base.json", "@total-typescript/tsconfig/tsc/no-dom/app"],
+	"compilerOptions": {
+		"lib": ["ESNext"],
+		"module": "nodenext",
+		"moduleResolution": "nodenext",
+		"allowSyntheticDefaultImports": true
+	}
+}

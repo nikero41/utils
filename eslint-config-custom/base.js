@@ -1,28 +1,27 @@
 import eslint from "@eslint/js";
+import json from "@eslint/json";
 import prettier from "eslint-config-prettier";
-import importPlugin from "eslint-plugin-import";
-import json from "eslint-plugin-json";
+import { importX } from "eslint-plugin-import-x";
+import importZod from "eslint-plugin-import-zod";
 import turbo from "eslint-plugin-turbo";
-import globals from "globals";
-import tseslint from "typescript-eslint";
+import { defineConfig, globalIgnores } from "eslint/config";
 
-export default tseslint.config(
+export default defineConfig(
+	globalIgnores(["node_modules"]),
 	{
 		name: "Main options",
 		languageOptions: {
 			ecmaVersion: 2022,
 			sourceType: "module",
-			globals: globals.node,
 		},
-		linterOptions: { reportUnusedDisableDirectives: false },
+		linterOptions: { reportUnusedDisableDirectives: true },
 	},
 	{ name: "ESlint recommended rules", ...eslint.configs.recommended },
 	{
 		name: "ESlint rules",
-		files: ["**/*.{ts,tsx,mts,cts}", "**/*.{js,jsx,mjs,cjs}"],
 		rules: {
 			/* Enforce camelCase */
-			camelcase: "error",
+			camelcase: ["error", { allow: ["required_error"] }],
 			/* We allow console for debug and error reporting */
 			"no-console": "error",
 			/* Allow void for async functions */
@@ -31,6 +30,8 @@ export default tseslint.config(
 			"no-restricted-exports": "off",
 			/* Restrict function syntax */
 			"func-style": ["error", "declaration", { allowArrowFunctions: true }],
+			/* Make sure that errors are always re-referenced */
+			"preserve-caught-error": "error",
 			/* Restrict function syntax in objects */
 			"object-shorthand": "error",
 			/* Restrict callbacks to arrow functions */
@@ -44,36 +45,34 @@ export default tseslint.config(
 	{
 		name: "Import",
 		files: ["**/*.{ts,tsx,mts,cts}", "**/*.{js,jsx,mjs,cjs}"],
-		plugins: { import: importPlugin },
+		extends: [importX.flatConfigs.recommended],
 		rules: {
-			...importPlugin.configs.recommended.rules,
-			/* Duplicate from typescript */
-			"import/named": "off",
-			/* Duplicate from typescript */
-			"import/namespace": "off",
-			/* Duplicate from typescript */
-			"import/default": "off",
-			/* Duplicate from typescript */
-			"import/no-named-as-default-member": "off",
-			/* Duplicate from typescript */
-			"import/no-unresolved": "off",
-			/* Prevent cyclic imports */
-			"import/no-cycle": "error",
+			/* TODO: Prevent cyclic imports */
+			// "import/no-cycle": "error",
 			/* Allow default export of anonymous objects */
-			"import/no-anonymous-default-export": [
+			"import-x/no-anonymous-default-export": [
 				"error",
 				{ allowObject: true, allowArray: true },
 			],
 			/* Allow default naming be the same as exported variables */
-			"import/no-named-as-default": "off",
+			"import-x/no-named-as-default": "off",
 		},
 	},
 	{
-		name: "JSON",
-		files: ["**/*.{json,jsonc}"],
+		files: ["**/*.json"],
+		language: "json/json",
 		plugins: { json },
-		rules: json.configs["recommended"].rules,
+		extends: ["json/recommended"],
+		rules: { "no-irregular-whitespace": "off" },
 	},
+	{
+		files: ["**/*.jsonc", ".vscode/*.json"],
+		language: "json/jsonc",
+		plugins: { json },
+		extends: ["json/recommended"],
+		rules: { "no-irregular-whitespace": "off" },
+	},
+	{ name: "Zod", extends: importZod.configs.recommended },
 	turbo.configs["flat/recommended"],
 	{ name: "Prettier", ...prettier },
 );
