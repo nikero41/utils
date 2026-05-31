@@ -14,6 +14,23 @@ export default defineConfig(
 			ecmaVersion: 2022,
 			sourceType: "module",
 		},
+		settings: {
+			"import-x/resolver": {
+				node: {
+					extensions: [
+						".js",
+						".mjs",
+						".cjs",
+						".ts",
+						".mts",
+						".cts",
+						".tsx",
+						".jsx",
+					],
+				},
+				typescript: true,
+			},
+		},
 		linterOptions: { reportUnusedDisableDirectives: true },
 	},
 	{ name: "ESlint recommended rules", ...eslint.configs.recommended },
