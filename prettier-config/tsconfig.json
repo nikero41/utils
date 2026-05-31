@@ -1,0 +1,9 @@
+{
+	"extends": "@repo/typescript-config/base",
+	"compilerOptions": {
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"noEmit": true,
+		"allowImportingTsExtensions": true
+	}
+}

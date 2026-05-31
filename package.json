@@ -1,0 +1,23 @@
+{
+  "name": "utils",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "eslint-config-nikero",
+    "oxlint-config",
+    "prettier-config",
+    "typescript-config"
+  ],
+  "scripts": {
+    "lint": "turbo run lint",
+    "lint:ts": "turbo run lint:ts",
+    "fmt": "oxfmt"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "oxfmt": "^0.52.0",
+    "turbo": "^2.9.16",
+    "typescript": "^5"
+  },
+  "packageManager": "bun@1.3.14"
+}
