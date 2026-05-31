@@ -7,7 +7,7 @@ import react from "./react.js";
 export default defineConfig(
 	{
 		files: ["**/*.{ts,tsx,mts,cts}", "**/*.{js,jsx,mjs,cjs}"],
-		extends: [jsxA11yPlugin.flatConfigs["recommended"]],
+		extends: [jsxA11yPlugin.flatConfigs.recommended],
 		rules: { "jsx-a11y/lang": "warn" },
 	},
 	{
