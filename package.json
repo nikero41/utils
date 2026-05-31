@@ -6,6 +6,7 @@
     "eslint-config-nikero",
     "oxlint-config",
     "prettier-config",
+    "react",
     "typescript-config"
   ],
   "scripts": {

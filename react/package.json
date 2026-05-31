@@ -1,31 +1,26 @@
 {
-	"name": "@repo/oxlint-config",
+	"name": "@repo/react",
 	"version": "1.0.0",
 	"private": true,
 	"type": "module",
-	"exports": {
-		".": "./barrel.ts",
-		"./base": "./base.ts",
-		"./typescript": "./typescript.ts",
-		"./node": "./node.ts",
-		"./react": "./react.ts",
-		"./frontend": "./frontend.ts"
-	},
 	"scripts": {
 		"lint": "oxlint",
 		"lint:ts": "tsc",
 		"clean": "rimraf .turbo tsconfig.tsbuildinfo"
 	},
 	"devDependencies": {
+		"@ianvs/prettier-plugin-sort-imports": "^4.7.1",
+		"@repo/oxlint-config": "workspace:*",
 		"@repo/typescript-config": "workspace:*",
-		"@tanstack/eslint-plugin-query": "^5.100.10",
+		"@tanstack/eslint-plugin-query": "^5.100.14",
+		"@types/react": "^19.2.15",
 		"eslint-plugin-better-tailwindcss": "^4.5.0",
 		"eslint-plugin-import-zod": "^1.2.1",
-		"eslint-plugin-react-hooks": "^7.1.0",
-		"eslint-plugin-turbo": "^2.9.14",
-		"globals": "^17.6.0",
+		"eslint-plugin-react-hooks": "^7.1.1",
+		"eslint-plugin-turbo": "^2.9.16",
 		"oxlint": "^1.67.0",
 		"oxlint-tsgolint": "^0.23.0",
+		"prettier-plugin-tailwindcss": "^0.8.0",
 		"rimraf": "^6.1.3",
 		"typescript": "^6.0.3"
 	}
