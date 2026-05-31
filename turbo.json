@@ -6,6 +6,9 @@
 		},
 		"lint:ts": {
 			"dependsOn": ["^lint:ts"]
+		},
+		"clean": {
+			"cache": false
 		}
 	}
 }
